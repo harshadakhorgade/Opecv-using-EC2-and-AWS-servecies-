@@ -1,8 +1,8 @@
 # Opecv-using-EC2-and-AWS-servecies-
-This is a Python project that performs face and eye detection using AWS Rekognition and Haarcascades. 
+# This is a Python project that performs face and eye detection using AWS Rekognition and Haarcascades. 
 
-First need create instance
-#here i am using amzon linux os
+# First need create instance
+#here i am using ubuntu os
 
 IAM role is required and that attach to ec2-instance
 
@@ -10,43 +10,67 @@ IAM users required for acess key
 
 #connect to ssh
 
-follow thse cammond
-sudo yum install python3
+# follow thse cammond
+sudo su
+sudo apt update
+sudo apt upgrade
 
-sudo yum install python3-pip
+sudo apt install python3
+python3 --version
 
+sudo apt install python3-venv
+python3 -m venv env
+. env/bin/activate
+
+sudo apt install python3-pip
 pip3 install opencv-python numpy boto3 termcolor matplotlib
 
-mkdir myproject
 
-xml file for detect face and eye
-wget https://github.com/opencv/opencv/raw/master/data/haarcascades/haarcascade_frontalface_default.xml wget https://github.com/opencv/opencv/raw/master/data/haarcascades/haarcascade_eye.xml
+mkdir opencv 
+cd opencv
+# xml file for detect face and eye
+wget https://github.com/opencv/opencv/raw/master/data/haarcascades/haarcascade_frontalface_default.xml
 
-mkdir opencv
 
-pip install awscli
+wget https://github.com/opencv/opencv/raw/master/data/haarcascades/haarcascade_eye.xml
 
+
+pip install awscli 
 aws configure Acess_key Sceret key
 
-thse is soln for error occur when file not run
-
 sudo apt-get install xvfb
+sudo apt install xorg-x11-server-Xvfb
 
-sudo yum install xorg-x11-server-Xvfb
+vi detection.py 
 
-Change ownership to ec2-user for the 'photo' directory and its contents
+
+# Change ownership to ec2-user for the 'photo' directory and its contents
 sudo chown -R ec2-user:ec2-user /home/ec2-user/opencv/photo/
 
-local to ec2
-scp -i MUMBAI_KEY.pem srk.png ec2-user@35.154.28.254:/home/ec2-user/opencv/photo/
+# local to ec2
+run on cmd
+scp -i "C:\Users\Harsahada Khorgade\Downloads\yeskey.pem" "C:\Users\Harsahada Khorgade\Downloads\opencv\elon.jpg" ubuntu@16.171.174.63:/home/ubuntu/opencv
 
-#ec2 to local
+//use public ip address here
 
-scp -i MUMBAI_KEY.pem ec2-user@3.109.133.244:/path/to/source/on/ec2/girl.png C:\Users\Admin\PycharmProjects\OPENCV
 
-RUN FILE
-python detection.py -t photo/group.webp
+sudo apt install mesa-libGL
+sudo apt install mesa-libGLU
+pip install pyvirtualdisplay
 
-Ec2 instance don't have direct permission for acess image so for that first we save image in form of.png file for image and .avi for vedio and then thse file transfer on local terminal i am using pycham and we easily see image
+# RUN FILE
+python detection.py elon.jpg
 
-OUPUT
+
+# ec2 to local
+
+scp -i "C:\Users\Harsahada Khorgade\Downloads\yeskey.pem" ubuntu@3.109.133.244:\home\ubuntu\opencv\result_with_eyes.jpg "C:\Users\Harsahada Khorgade\Downloads"
+ //use public ip adress here
+
+
+
+
+# OUPUT
+result_with_eyes.jpg
+
+![Example Image](result_with_eyes.jpg)
