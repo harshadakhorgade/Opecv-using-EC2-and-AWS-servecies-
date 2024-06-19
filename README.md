@@ -3,14 +3,15 @@
 
 # First need create instance
 #here i am using ubuntu os
+create  EC2 instance
 
 IAM role is required and that attach to ec2-instance
 
-IAM users required for acess key
+IAM users required for access key
 
 #connect to ssh
 
-# follow thse cammond
+# follow these cammond
 sudo su
 sudo apt update
 sudo apt upgrade
@@ -27,7 +28,9 @@ pip3 install opencv-python numpy boto3 termcolor matplotlib
 
 
 mkdir opencv 
+
 cd opencv
+
 # xml file for detect face and eye
 wget https://github.com/opencv/opencv/raw/master/data/haarcascades/haarcascade_frontalface_default.xml
 
@@ -40,6 +43,7 @@ aws configure Acess_key Sceret key
 
 sudo apt-get install xvfb
 sudo apt install xorg-x11-server-Xvfb
+
 
 vi detection.py 
 
@@ -73,4 +77,4 @@ scp -i "C:\Users\Harsahada Khorgade\Downloads\yeskey.pem" ubuntu@3.109.133.244:\
 # OUPUT
 result_with_eyes.jpg
 
-![Example Image](result_with_eyes.jpg)
+![result_with_eyes](https://github.com/harshadakhorgade/Opecv-using-EC2-and-AWS-servecies-/blob/main/result_with_eyes.png)
